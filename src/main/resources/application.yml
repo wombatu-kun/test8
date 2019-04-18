@@ -1,0 +1,33 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;database=center
+    username: SA
+    password: 20klm=klm
+
+application:
+  fixtures:
+    version: FCDR_13_01
+    meetingId: 2c908a93-684dc91c-0168-74c69040-00ea
+    headerDocNum: 99
+    headerDocDate:
+      year: 2019
+      month: 01
+      day: 12
+    headerOutDocNum: 130
+    headerInDocNum: 200
+    issuerName: Акционерное общество «Тест»
+    issuerFcsmId: 120-ПАЮ
+    issuerOgrnId: 1045605469744
+    corporateActionCode: XMET
+    recordDate:
+      year: 2019
+      month: 01
+      day: 12
+    messageFunction: NEWM
+    informationTypeCode: OWNL
+    securityClassification: SHAR
+    ordStateRegNum: 1-01-04007-D
+    privStateRegNum: 1-02-04007-D
