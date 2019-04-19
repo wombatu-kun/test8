@@ -7,7 +7,7 @@ import wombatukun.tests.test8.model.Account;
 
 public interface AccountMapper {
 
-	Shareholder map(Account account);
+	Shareholder mapShareholder(Account account);
 
 	AddressT mapAccountAddress(String countryCode, String index, String addr);
 
@@ -21,6 +21,6 @@ public interface AccountMapper {
 
 	PostalName mapPostalName(Account account);
 
-	PartyDtlsT mapShareholderDtls(Account account);
+	PartyDtlsT mapPartyDtls(Account account);
 
 }

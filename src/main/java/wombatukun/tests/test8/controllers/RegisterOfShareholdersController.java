@@ -20,7 +20,7 @@ public class RegisterOfShareholdersController {
 		this.registerOfShareholdersService = registerOfShareholdersService;
 	}
 
-	@GetMapping("nd-account-ids")
+	@GetMapping("nd-accounts")
 	public List<Long> findNDAccountIds(@PathVariable String meetingId) {
 		return registerOfShareholdersService.findNDAccountIds(meetingId);
 	}

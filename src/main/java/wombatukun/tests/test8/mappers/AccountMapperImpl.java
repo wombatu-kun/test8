@@ -23,19 +23,19 @@ public class AccountMapperImpl implements AccountMapper {
 	}
 
 	@Override
-	public Shareholder map(Account account) {
+	public Shareholder mapShareholder(Account account) {
 		Shareholder shareholder = new Shareholder();
-		//TODO shareholder_id
-
+		shareholder.setShareholderId(mapShareholderId(account));
 		shareholder.setAccountDtls(mapAccountDtls(account));
 		ShareholderInfo shareholderInfo = new ShareholderInfo();
 		shareholderInfo.setInn(account.getInn());
 		if (account.getBirthDate() != null) shareholderInfo.setBirthday(DateUtils.mapDate(account.getBirthDate()));
 		if (account.getCitizen() != null) shareholderInfo.setNationality(mapCountry(account.getCitizen()));
 		shareholderInfo.setPostalName(mapPostalName(account));
-		shareholderInfo.setShareholderDtls(mapShareholderDtls(account));
+		shareholderInfo.setShareholderDtls(mapPartyDtls(account));
 		shareholder.setShareholderInfo(shareholderInfo);
-		shareholder.setShareholderContacts(mapContacts(account.getEmail()));
+		shareholder.setShareholderContacts(mapPartyContacts(account.getEmail()));
+		shareholder.setTaxCategory(fixtures.getTaxCategory());
 		fillSecurityBalance(shareholder, account.getOrdValue(), account.getOrdN(), account.getOrdD(), fixtures.getOrdStateRegNum());
 		fillSecurityBalance(shareholder, account.getPrivValue(), account.getPrivN(), account.getPrivD(), fixtures.getPrivStateRegNum());
 		return shareholder;
@@ -50,7 +50,7 @@ public class AccountMapperImpl implements AccountMapper {
 			accountId.setId(String.valueOf(account.getAccountId()));
 		} else {
 			accountDtls.setAccountType("01");
-			accountId.setId(String.valueOf(account.getAccNd())); //TODO not sure
+			accountId.setId(String.valueOf(account.getAccNd()));
 		}
 		accountDtls.setAccountId(accountId);
 		return accountDtls;
@@ -68,7 +68,7 @@ public class AccountMapperImpl implements AccountMapper {
 	}
 
 	@Override
-	public PartyDtlsT mapShareholderDtls(Account account) {
+	public PartyDtlsT mapPartyDtls(Account account) {
 		PartyDtlsT shareholderDtls = new PartyDtlsT();
 		shareholderDtls.setName(account.getName());
 		shareholderDtls.setShortName(account.getShortName());
@@ -121,11 +121,17 @@ public class AccountMapperImpl implements AccountMapper {
 		return postalName;
 	}
 
+	private IdT mapShareholderId(Account account) {
+		IdT shareholderId = new IdT();
+		shareholderId.setId(account.getAccNd() + "_" + account.getId().getAccNum());
+		return shareholderId;
+	}
+
 	private String mapCountry(String code) {
 		return "94".equals(code) ? "RU" : "X3";
 	}
 
-	private PartyContactsT mapContacts(String email) {
+	private PartyContactsT mapPartyContacts(String email) {
 		PartyContactsT contacts = null;
 		if (email != null) {
 			contacts = new PartyContactsT();
@@ -134,15 +140,15 @@ public class AccountMapperImpl implements AccountMapper {
 		return contacts;
 	}
 
-	private void fillSecurityBalance(Shareholder shareholder, Double value, Long numerator, Long denominator, String regNum) {
-		if ((value != null && value > 0) || (numerator != null && numerator != 0L)) {
+	private void fillSecurityBalance(Shareholder shareholder, BigDecimal value, Long numerator, Long denominator, String regNum) {
+		if ((value != null && value.compareTo(BigDecimal.ZERO) > 0) || (numerator != null && numerator != 0L)) {
 			SecurityBalanceT securityBalance = new SecurityBalanceT();
 			SecurityInfoT securityInfo = new SecurityInfoT();
 			securityInfo.setSecurityClassification(SecurityClassificationEt.fromValue(fixtures.getSecurityClassification()));
 			securityInfo.setStateRegNum(regNum);
 			securityBalance.setSecurity(securityInfo);
 			QuantityInUnitT total = new QuantityInUnitT();
-			total.setUnits(BigDecimal.valueOf(value));
+			total.setUnits(value);
 			if (numerator != 0) {
 				QuantityInUnitT.Fraction fraction = new QuantityInUnitT.Fraction();
 				fraction.setNumerator(BigDecimal.valueOf(numerator));

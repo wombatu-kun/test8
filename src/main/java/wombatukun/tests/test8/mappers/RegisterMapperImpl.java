@@ -51,7 +51,7 @@ public class RegisterMapperImpl implements RegisterMapper {
 		List<RegisterList> listOfRegisterLists = register.getRegisterList();
 		shareholderAccounts.stream()
 				.filter(account -> !accountMapper.isAccountND(account))
-				.map(account -> accountMapper.map(account))
+				.map(account -> accountMapper.mapShareholder(account))
 				.forEach(shareholder -> registerList.getShareholder().add(shareholder));
 		listOfRegisterLists.add(registerList);
 	}

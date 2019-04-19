@@ -28,6 +28,8 @@ public class Fixtures {
     private Map<String, Integer> recordDate;
     private String messageFunction;
     private String informationTypeCode;
+    private String taxStatusCode;
+    private String taxExemptIndicator;
     private String securityClassification;
     private String ordStateRegNum;
     private String privStateRegNum;
@@ -73,6 +75,13 @@ public class Fixtures {
         return indicator;
     }
 
+    public TaxCategoryT getTaxCategory() {
+        TaxCategoryT taxCategory = new TaxCategoryT();
+        taxCategory.setTaxStatusCode(taxStatusCode);
+        taxCategory.setTaxExemptIndicator(YesNoT.fromValue(taxExemptIndicator));
+        return taxCategory;
+    }
+
     public String getSecurityClassification() { return securityClassification; }
 
     public String getOrdStateRegNum() { return ordStateRegNum; }
@@ -106,6 +115,10 @@ public class Fixtures {
     public void setMessageFunction(String messageFunction) { this.messageFunction = messageFunction; }
 
     public void setInformationTypeCode(String informationTypeCode) { this.informationTypeCode = informationTypeCode; }
+
+    public void setTaxStatusCode(String taxStatusCode) { this.taxStatusCode = taxStatusCode; }
+
+    public void setTaxExemptIndicator(String taxExemptIndicator) { this.taxExemptIndicator = taxExemptIndicator; }
 
     public void setSecurityClassification(String securityClassification) { this.securityClassification = securityClassification; }
 

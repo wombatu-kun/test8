@@ -11,6 +11,7 @@
 	<groupId>wombatu-kun.tests.test8</groupId>
 	<artifactId>app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<name>app</name>
 
 	<properties>
 		<java.version>1.8</java.version>

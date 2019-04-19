@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -46,17 +47,17 @@ public class Account {
   private String legalCountryCode;
   private String legalIndex;
   private String legalAddress;
-  private Double ordValue;
+  private BigDecimal ordValue;
   @Column(name = "ord_n")
   private Long ordN;
   @Column(name = "ord_d")
   private Long ordD;
-  private Double privValue;
+  private BigDecimal privValue;
   @Column(name = "priv_n")
   private Long privN;
   @Column(name = "priv_d")
   private Long privD;
-  private Double allValue;
+  private BigDecimal allValue;
   @Column(name = "all_n")
   private Long allN;
   @Column(name = "all_d")
@@ -73,17 +74,17 @@ public class Account {
   private Timestamp voiteTime;
   private String email;
   private String leiId;
-  private Double doValue;
+  private BigDecimal doValue;
   @Column(name = "do_n")
   private Long doN;
   @Column(name = "do_d")
   private Long doD;
-  private Double dpValue;
+  private BigDecimal dpValue;
   @Column(name = "dp_n")
   private Long dpN;
   @Column(name = "dp_d")
   private Long dpD;
-  private Double daValue;
+  private BigDecimal daValue;
   @Column(name = "da_n")
   private Long daN;
   @Column(name = "da_d")
@@ -392,11 +393,11 @@ public class Account {
   }
 
 
-  public Double getOrdValue() {
+  public BigDecimal getOrdValue() {
 	return ordValue;
   }
 
-  public void setOrdValue(Double ordValue) {
+  public void setOrdValue(BigDecimal ordValue) {
 	this.ordValue = ordValue;
   }
 
@@ -419,11 +420,11 @@ public class Account {
   }
 
 
-  public Double getPrivValue() {
+  public BigDecimal getPrivValue() {
 	return privValue;
   }
 
-  public void setPrivValue(Double privValue) {
+  public void setPrivValue(BigDecimal privValue) {
 	this.privValue = privValue;
   }
 
@@ -446,11 +447,11 @@ public class Account {
   }
 
 
-  public Double getAllValue() {
+  public BigDecimal getAllValue() {
 	return allValue;
   }
 
-  public void setAllValue(Double allValue) {
+  public void setAllValue(BigDecimal allValue) {
 	this.allValue = allValue;
   }
 
@@ -581,11 +582,11 @@ public class Account {
   }
 
 
-  public Double getDoValue() {
+  public BigDecimal getDoValue() {
 	return doValue;
   }
 
-  public void setDoValue(Double doValue) {
+  public void setDoValue(BigDecimal doValue) {
 	this.doValue = doValue;
   }
 
@@ -608,11 +609,11 @@ public class Account {
   }
 
 
-  public Double getDpValue() {
+  public BigDecimal getDpValue() {
 	return dpValue;
   }
 
-  public void setDpValue(Double dpValue) {
+  public void setDpValue(BigDecimal dpValue) {
 	this.dpValue = dpValue;
   }
 
@@ -635,11 +636,11 @@ public class Account {
   }
 
 
-  public Double getDaValue() {
+  public BigDecimal getDaValue() {
 	return daValue;
   }
 
-  public void setDaValue(Double daValue) {
+  public void setDaValue(BigDecimal daValue) {
 	this.daValue = daValue;
   }
 

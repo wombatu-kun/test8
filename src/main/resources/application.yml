@@ -31,3 +31,5 @@ application:
     securityClassification: SHAR
     ordStateRegNum: 1-01-04007-D
     privStateRegNum: 1-02-04007-D
+    taxStatusCode: 1
+    taxExemptIndicator: "No"
